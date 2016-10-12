@@ -50,6 +50,16 @@ public class MainActivity extends AppCompatActivity {
         datePickr.setMinValue(1);
         datePickr.setValue(1);
 
+        monthPickr.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+            @Override
+            public void onValueChange(NumberPicker picker, int oldVal, int m) {
+                if(m==1||m==3||m==5||m==7||m==8||m==10||m==12)
+                    datePickr.setMaxValue(31);
+                else if(m==4||m==6||m==9||m==11)
+                    datePickr.setMaxValue(30);
+                else datePickr.setMaxValue(29);
+            }
+        });
         //set btn onclick listener
         btn.setOnClickListener(new Button.OnClickListener() {
             @Override
@@ -57,10 +67,7 @@ public class MainActivity extends AppCompatActivity {
                 int m = monthPickr.getValue();
                 int d = datePickr.getValue();
 
-
                 //determine horoscope
-                if(((m==1||m==3||m==5||m==7||m==8||m==10||m==12)&&d>=1&&d<=31)||((m==4||m==6||m==9||m==11)&&d>=1&&d<=30)||(m==2&&d>=1&&d<=29)){
-
                     switch (m){
                         case 1:
                             if(d<=20) result="10";
@@ -116,9 +123,6 @@ public class MainActivity extends AppCompatActivity {
 
                     }
 
-
-                }
-
                 wv.setWebViewClient(new mywebview());
                 pd.setMessage("Loading...");
                 pd.show();
@@ -126,18 +130,9 @@ public class MainActivity extends AppCompatActivity {
                 wv.getSettings().setJavaScriptEnabled(true);
                 wv.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
 
-                //wv.loadUrl("http://www.yzu.edu.tw");
-                //wv.loadUrl("http://astro.click108.com.tw/daily_8.php?iAstro=8&iAcDay=2016-10-09");
-                //wv.loadUrl("http://astro.click108.com.tw/unit002/2010/thought_reading_option_new.php?tid=20&aid=8&sex=2&to=step3&pSex=2#step3");
                 wv.loadUrl("http://m.click108.com.tw/astro/index.php?astroNum="+result);
             }
         });
-
-
-
-
-
-
     }
 
 
