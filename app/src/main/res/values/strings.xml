@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Horoscope Calculator</string>
+    <string name="confirmBtn">查詢</string>
 </resources>

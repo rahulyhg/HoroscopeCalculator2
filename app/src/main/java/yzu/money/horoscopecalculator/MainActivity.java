@@ -10,6 +10,8 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ImageView;
+import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,9 +20,11 @@ import static yzu.money.horoscopecalculator.R.styleable.View;
 
 public class MainActivity extends AppCompatActivity {
     private DatePicker datePicker;
+    private NumberPicker monthPickr, datePickr;
     private WebView wv;
     private ProgressDialog pd;
     private Button btn;
+    //private ImageView ImgView;
     //private TextView txtView;
     String result="2";
 
@@ -36,12 +40,22 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //find views
-        datePicker = (DatePicker) findViewById(R.id.datePicker);
+       // datePicker = (DatePicker) findViewById(R.id.datePicker);
         wv = (WebView) findViewById(R.id.webView);
         pd = new ProgressDialog(this);
         btn = (Button) findViewById(R.id.button);
+        monthPickr = (NumberPicker) findViewById(R.id.numberPicker8);
+        datePickr= (NumberPicker) findViewById(R.id.numberPicker9);
+        //ImgView= (ImageView) findViewById(R.id.imageView3);
 
-
+        btn.setText(R.string.confirmBtn);
+        monthPickr.setMaxValue(12);
+        monthPickr.setMinValue(1);
+        monthPickr.setValue(1);
+        datePickr.setMaxValue(31);
+        datePickr.setMinValue(1);
+        datePickr.setValue(1);
+        //ImgView.setBackgroundResource(R.drawable.white);
 
         //set btn onclick listener
         btn.setOnClickListener(new Button.OnClickListener() {
@@ -49,8 +63,10 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //correct date
                 //int y = datePicker.getYear();
-                int m = datePicker.getMonth()+1;
-                int d = datePicker.getDayOfMonth();
+                //int m = datePicker.getMonth()+1;
+                //int d = datePicker.getDayOfMonth();
+                int m = monthPickr.getValue();
+                int d = datePickr.getValue();
                 //String cdate = year + "-" + month + "-" + day;
 
                 //determine horoscope
